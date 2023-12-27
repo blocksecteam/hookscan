@@ -1,0 +1,15 @@
+[project]
+name = "UniScan"
+version = "1.0"
+requires-python = ">=3.8"
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+ignore = ["E501", "SIM", "E501", "E402", "C408", "E731", "E721"]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120

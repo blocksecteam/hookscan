@@ -1,0 +1,9 @@
+# editor config
+.vscode/
+
+# project cache
+__pycache__/
+*.pyc
+
+# misc
+.DS_Store
