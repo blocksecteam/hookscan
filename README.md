@@ -62,7 +62,7 @@ UniScan can be integrated into the development process to scan Uniswap v4 hooks.
 
 Using UniScan can significantly reduce manual effort and help to locate many potential issues. Nonetheless, UniScan has its limitations, particularly with complex logical vulnerabilities or those related to semantics. 
 
-To uncover and address these sophisticated semantic concerns, the expertise of BlockSec's seasoned professionals is indispensable. They can conduct thorough and detailed reviews to ensure the highest level of security. For our comprehensive audit services and proactive security solutions, such as [Phalcon Block](https://phalcon.xyz/block), to protect your initiatives, please do not hesitate to contact us.
+To uncover and address these sophisticated semantic concerns, the expertise of BlockSec's seasoned professionals is indispensable. They can conduct thorough and detailed reviews to ensure the highest level of security. For our comprehensive audit services and proactive security solutions, such as [Phalcon Block](https://phalcon.xyz/block), to protect your smart contracts and assets, please do not hesitate to contact us.
 
 ## License
 
