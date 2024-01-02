@@ -13,7 +13,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # chmod entrypoint.sh
-RUN chmod +x entrypoint.sh
+RUN chmod +x scripts/entrypoint.sh
 
 # set entrypoint
-ENTRYPOINT ["/uniscan/entrypoint.sh"]
+ENTRYPOINT ["/uniscan/scripts/entrypoint.sh"]
