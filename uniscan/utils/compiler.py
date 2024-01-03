@@ -90,7 +90,10 @@ def get_remappings(base_path: pathlib.Path, remappings_file_str: Optional[str]) 
 
 
 def compile_standard_json(
-    std_input_json, contract_name: Optional[str] = None, add_output_selection: Optional[bool] = None
+    std_input_json,
+    contract_name: Optional[str] = None,
+    solc_bin: Optional[str] = None,
+    add_output_selection: Optional[bool] = None,
 ) -> Dict[str, Any]:
     for d in std_input_json["sources"].values():
         content = d["content"]
@@ -118,8 +121,10 @@ def compile_standard_json(
     else:
         assert "outputSelection" in std_input_json["settings"], "outputSelection not in standard input json"
 
+    if solc_bin is None:
+        solc_bin = "solc"
     p = subprocess.run(
-        "solc --standard-json -",
+        f"{solc_bin} --standard-json -",
         input=json.dumps(std_input_json).encode(),
         capture_output=True,
         shell=True,

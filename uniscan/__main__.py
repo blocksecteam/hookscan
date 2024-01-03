@@ -46,13 +46,13 @@ def handle_input(args) -> Tuple[Optional[Dict[str, Any]], Dict[str, Any], Option
         if "contracts" not in std_json:
             # NOTE standard input json
             std_input_json = std_json
-            std_output_json = compile_standard_json(std_input_json, target)
+            std_output_json = compile_standard_json(std_input_json, target, args.solc_bin)
         else:
             std_input_json = None
             std_output_json = std_json
     elif file_path.endswith(".sol"):
         std_input_json = generate_standard_input_json(file_path, args)
-        std_output_json = compile_standard_json(std_input_json, target)
+        std_output_json = compile_standard_json(std_input_json, target, args.solc_bin)
     else:
         raise Exception(f"invalid input file: {file_path}")
     return std_input_json, std_output_json, target
