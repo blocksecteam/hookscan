@@ -20,6 +20,7 @@ RUN chmod +x scripts/entrypoint.sh
 
 # cleanup
 RUN apt-get remove -y curl jq wget
+RUN apt-get autoremove -y
 
 # set entrypoint
 ENTRYPOINT ["/uniscan/scripts/entrypoint.sh"]
