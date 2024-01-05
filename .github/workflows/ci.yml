@@ -13,3 +13,16 @@ jobs:
         with:
           python-version: "3.8"
       - uses: pre-commit/action@v3.0.0
+
+  unittest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.8"
+      - uses: futuretech6/get-solc@master
+        with:
+          version: v0.8.14
+      - run: pip install -r requirements.txt
+      - run: python -m unittest tests/test.py
