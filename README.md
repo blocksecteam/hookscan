@@ -55,7 +55,7 @@ docker run --rm -it \
     -v /path/to/project:/project \
     -e SOLC_VERSION=0.8.x \
     -e CONTRACT=path/to/source_file.sol:ContractName \
-    uniscan
+    uniscan [--other-flags]
 
 # demo: run image on v4-stoploss (https://github.com/saucepoint/v4-stoploss)
 git clone https://github.com/saucepoint/v4-stoploss ~/v4-stoploss
