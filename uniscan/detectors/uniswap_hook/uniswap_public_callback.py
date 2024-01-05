@@ -34,7 +34,7 @@ class UniswapPublicCallback(BaseDetector):
     def callback(self, info: TraversalInfo, inst_instance: ValueInstance, is_end: bool) -> None:
         if not info.function.is_runtime:
             return
-        if (external_selector := info.current_function_selector) is None:
+        if not isinstance((external_selector := info.current_function_selector), int):
             return
 
         if not is_end:
