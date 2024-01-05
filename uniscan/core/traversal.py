@@ -185,7 +185,7 @@ class Traversal:
             assert not self.info.is_end
             self.info.is_end = True
             assert isinstance(inst_instance.value, UnreachableInst)
-            has_triggle_detector_set = set()
+            has_trigger_detector_set = set()
             for trigger_path_index, trigger_inst_index in reversed(self.info.trigger_index_list):
                 trigger_path_node = self.info.path[trigger_path_index]
                 trigger_inst_index -= (
@@ -196,7 +196,7 @@ class Traversal:
                 assert exact_key in self.callback_dict
 
                 for callback in self.callback_dict[exact_key]:
-                    if callback in has_triggle_detector_set:
+                    if callback in has_trigger_detector_set:
                         continue
                     else:
                         try:
@@ -205,7 +205,7 @@ class Traversal:
                             if e.args != ():
                                 runtime_logger.warning(f"[Callback] Raised NotImplemented Error: {e}")
 
-                        has_triggle_detector_set.add(callback)
+                        has_trigger_detector_set.add(callback)
             self.info.is_end = False
 
     def update_zero_value(self, inst_instance: ValueInstance):
