@@ -6,7 +6,7 @@ PROJECT_PATH=/project
 ARGS=(--base-path $PROJECT_PATH)
 
 # set solc bin path
-if [ "${SOLC_VERSION:=""}" ]; then
+if [ -z "$SOLC_VERSION" ]; then
    SOLC_VERSION=0.8.19
 fi
 ARGS+=(--solc-bin $SOLC_PATH/v$SOLC_VERSION/solc)
