@@ -15,7 +15,8 @@ ARGS=(--base-path $PROJECT_PATH)
 if [ -z "$SOLC_VERSION" ]; then
    SOLC_VERSION=0.8.19
 fi
-ARGS+=(--solc-bin $SOLC_PATH/v$SOLC_VERSION/solc)
+SOLC_PATH=$SOLC_PATH/v$SOLC_VERSION/solc
+ARGS+=(--solc-bin $SOLC_PATH)
 
 # add external args
 ARGS+=($@)
@@ -23,6 +24,9 @@ ARGS+=($@)
 # set the input contract
 ARGS+=($PROJECT_PATH/$CONTRACT)
 
-echo "arg list: ${ARGS[@]}"
+# forge build
+su -c "$FOUNDRY_DIR/bin/forge build --root $PROJECT_PATH --use $SOLC_PATH" $SCANNER
 
+# run uniscan
+echo "uniscan arg list: ${ARGS[@]}"
 su -c "python -m uniscan `echo ${ARGS[@]}`" $SCANNER

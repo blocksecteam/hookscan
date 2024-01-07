@@ -2,6 +2,7 @@ FROM python:3.8-slim
 
 ENV SOLC_PATH=/solc
 ENV UNISCAN_PATH=/uniscan
+ENV FOUNDRY_DIR=/foundry
 
 WORKDIR $UNISCAN_PATH
 
@@ -15,6 +16,11 @@ RUN curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repo
         wget -O $SOLC_PATH/{}/solc https://github.com/ethereum/solidity/releases/download/{}/solc-static-linux; \
         chmod +x $SOLC_PATH/{}/solc"
 
+# install foundry
+RUN apt-get install -y git
+RUN curl -L https://foundry.paradigm.xyz | bash
+RUN $FOUNDRY_DIR/bin/foundryup
+
 # copy repo
 COPY . .
 
@@ -26,7 +32,7 @@ RUN mv $UNISCAN_PATH/scripts/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # cleanup
-RUN apt-get remove -y curl jq wget
+RUN apt-get remove -y curl jq wget git
 RUN apt-get autoremove -y
 
 # set entrypoint
