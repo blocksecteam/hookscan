@@ -40,7 +40,7 @@ PYTHONPATH=path/to/this/repo python -m uniscan --help
 <h3>Docker Support</h3>
 </summary>
 
-UniScan provides docker support with python and solc dependency integrated.
+UniScan provides docker support with Python, Solc and [Foundry](https://github.com/foundry-rs/foundry) dependencies integrated.
 
 ```bash
 # build image
@@ -59,7 +59,6 @@ docker run --rm -it \
 
 # demo: run image on v4-stoploss (https://github.com/saucepoint/v4-stoploss)
 git clone https://github.com/saucepoint/v4-stoploss ~/v4-stoploss
-forge build --root ~/v4-stoploss
 docker run --rm -it \
     -v $HOME/v4-stoploss:/project \
     -e SOLC_VERSION=0.8.19 \
