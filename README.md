@@ -70,24 +70,24 @@ docker run --rm -it \
 
 ## Detector Spec
 
-| **Detector**            | **Description**                                                                          | **Severity** | **Confidence** |
-| ----------------------- | ---------------------------------------------------------------------------------------- | ------------ | -------------- |
-| `UniswapPublicHook`     | callers of hook functions are not exclusively<br />restricted to the pool manager alone  | High         | High           |
-| `UniswapPublicCallback` | callers of callback functions are not exclusively<br />restricted to the contract itself | High         | High           |
-| `UniswapUpgradableHook` | the contract `DELEGATECALL`s to mutable addresses                                        | High         | High           |
-| `UniswapSuicidalHook`   | the contract contains `SELFDESTRUCT`                                                     | Medium       | High           |
+| **Detector**                               | **Description**                                                                          | **Severity** | **Confidence** |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------ | -------------- |
+| [`UniswapPublicHook`][public_hook]         | callers of hook functions are not exclusively<br />restricted to the pool manager alone  | High         | High           |
+| [`UniswapPublicCallback`][public_callback] | callers of callback functions are not exclusively<br />restricted to the contract itself | High         | High           |
+| [`UniswapUpgradableHook`][upgradable_hook] | the contract `DELEGATECALL`s to mutable addresses                                        | High         | High           |
+| [`UniswapSuicidalHook`][suicidal_hook]     | the contract contains `SELFDESTRUCT`                                                     | Medium       | High           |
 
 ## Evaluation
 
 We've conducted tests on 13 hook contracts associated with Uniswap v4, as listed in the compilation [awesome-uniswap-hook](https://github.com/hyperoracle/awesome-uniswap-hooks), all of which compiled without errors.
 The test results are as follows:
 
-| **Detector**            | **TP/ground_truth** |
-| ----------------------- | ------------------- |
-| `UniswapPublicHook`     | 7/7 contracts       |
-| `UniswapPublicCallback` | 3/3 contracts       |
-| `UniswapUpgradableHook` | 0                   |
-| `UniswapSuicidalHook`   | 0                   |
+| **Detector**                               | **TP/ground_truth** |
+| ------------------------------------------ | ------------------- |
+| [`UniswapPublicHook`][public_hook]         | 7/7 contracts       |
+| [`UniswapPublicCallback`][public_callback] | 3/3 contracts       |
+| [`UniswapUpgradableHook`][upgradable_hook] | 0                   |
+| [`UniswapSuicidalHook`][suicidal_hook]     | 0                   |
 
 ## Note
 
@@ -100,3 +100,8 @@ To uncover and address these sophisticated semantic concerns, the expertise of B
 ## License
 
 This project is under the AGPLv3 License. See the LICENSE file for the full license text.
+
+[public_callback]: docs/detectors/UniswapPublicCallback.md
+[public_hook]: docs/detectors/UniswapPublicHook.md
+[upgradable_hook]: docs/detectors/UniswapUpgradableHook.md
+[suicidal_hook]: docs/detectors/UniswapSuicidalHook.md
