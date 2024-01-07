@@ -25,8 +25,7 @@ pip install -r requirements.txt
 
 ```bash
 # [optional] for foundry projects, fetch dependencies before running UniScan
-cd path/to/foundry/project
-forge build
+forge install --root path/to/foundry/project
 
 # simple usage
 PYTHONPATH=path/to/this/repo python -m uniscan path/to/source_file.sol:ContractName
@@ -34,6 +33,40 @@ PYTHONPATH=path/to/this/repo python -m uniscan path/to/source_file.sol:ContractN
 # help
 PYTHONPATH=path/to/this/repo python -m uniscan --help
 ```
+
+<details>
+<summary>
+<h3>Docker Support</h3>
+</summary>
+
+UniScan provides docker support with python and solc dependency integrated.
+
+```bash
+# build image
+docker build --tag uniscan .
+
+# pull pre-built image
+docker pull futuretech6/uniscan
+docker image tag futuretech6/uniscan uniscan
+
+# run image
+docker run --rm -it \
+    -v /path/to/project:/project \
+    -e SOLC_VERSION=0.8.x \
+    -e CONTRACT=path/to/source_file.sol:ContractName \
+    uniscan [--other-flags]
+
+# demo: run image on v4-stoploss (https://github.com/saucepoint/v4-stoploss)
+git clone https://github.com/saucepoint/v4-stoploss ~/v4-stoploss
+forge install --root ~/v4-stoploss
+docker run --rm -it \
+    -v $HOME/v4-stoploss:/project \
+    -e SOLC_VERSION=0.8.19 \
+    -e CONTRACT=src/StopLoss.sol:StopLoss \
+    uniscan
+```
+
+</details>
 
 ## Detector Spec
 
