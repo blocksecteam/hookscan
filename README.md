@@ -25,8 +25,7 @@ pip install -r requirements.txt
 
 ```bash
 # [optional] for foundry projects, fetch dependencies before running UniScan
-cd path/to/foundry/project
-forge build
+forge install --root path/to/foundry/project
 
 # simple usage
 PYTHONPATH=path/to/this/repo python -m uniscan path/to/source_file.sol:ContractName
@@ -59,7 +58,7 @@ docker run --rm -it \
 
 # demo: run image on v4-stoploss (https://github.com/saucepoint/v4-stoploss)
 git clone https://github.com/saucepoint/v4-stoploss ~/v4-stoploss
-forge build --root ~/v4-stoploss
+forge install --root ~/v4-stoploss
 docker run --rm -it \
     -v $HOME/v4-stoploss:/project \
     -e SOLC_VERSION=0.8.19 \
