@@ -8,9 +8,11 @@ from uniscan.utils.ordered_set import OrderedSet as set
 
 
 class UniswapGetCallback(BaseDetector):
-    """Find callback functions that are passed by lock to pool manager.
+    """Find callback functions that are passed by `lock` to pool manager.
 
     This detector enumerates all the functions (tagged by selector) that are passed by `lock` to pool manager.
+
+    Base detector used by UniswapPublicCallback
     """
 
     def __init__(self) -> None:
