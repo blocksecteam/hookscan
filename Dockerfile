@@ -1,7 +1,9 @@
 FROM python:3.8-slim
 
 ENV SOLC_PATH=/solc
-WORKDIR /uniscan
+ENV UNISCAN_PATH=/uniscan
+
+WORKDIR $UNISCAN_PATH
 
 # install solc>=0.8.14
 RUN apt-get update && apt-get install -y curl jq wget
@@ -19,12 +21,13 @@ COPY . .
 # install pypi dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# chmod entrypoint.sh
-RUN chmod +x scripts/entrypoint.sh
+# move and chmod entrypoint.sh
+RUN mv $UNISCAN_PATH/scripts/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # cleanup
 RUN apt-get remove -y curl jq wget
 RUN apt-get autoremove -y
 
 # set entrypoint
-ENTRYPOINT ["/uniscan/scripts/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
