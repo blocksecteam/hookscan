@@ -10,7 +10,7 @@ from uniscan.detectors.detector_result import DetectorResult
 class UniswapPublicHook(BaseDetector):
     """Anyone can call hook functions.
 
-    This detector enumerates all the hook functions (e.g. `beforeSwap`) that is not `view` and can be called by
+    This detector enumerates all the hook functions (e.g. `beforeSwap`) that are not `view` and can be called by
         anyone without privilege validation.
     """
 

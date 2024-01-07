@@ -10,8 +10,8 @@ from uniscan.utils.ordered_set import OrderedSet as set
 
 
 class UniswapPublicCallback(BaseDetector):
-    """For any callback functions that are called by lockAcquired using external call,
-    there should be a only-self check (no need for internal callback).
+    """For any callback functions that are called by lockAcquired using external calls,
+        there should be an only-self check (no need for internal callback).
 
     This detector enumerates all callback functions given by UniswapGetCallback detector which lacks `onlySelf` check.
     """
