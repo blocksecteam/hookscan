@@ -1,9 +1,9 @@
 import pathlib
 import unittest
 
-from uniscan.__main__ import compile_standard_json
-from uniscan.detectors.all_detectors import all_detectors_dict
-from uniscan.uniscan import Uniscan
+from hookscan.__main__ import compile_standard_json
+from hookscan.detectors.all_detectors import all_detectors_dict
+from hookscan.hookscan import Hookscan
 
 
 class TestAll(unittest.TestCase):
@@ -21,10 +21,10 @@ class TestAll(unittest.TestCase):
 
                 detector_name = file_path.stem
 
-                uniscan = Uniscan(std_json)
-                uniscan.register_detectors([all_detectors_dict[detector_name]])
-                detector_results = uniscan.detect(str_key=True)["detection_results"][detector_name]
-                del uniscan
+                hookscan = Hookscan(std_json)
+                hookscan.register_detectors([all_detectors_dict[detector_name]])
+                detector_results = hookscan.detect(str_key=True)["detection_results"][detector_name]
+                del hookscan
 
                 if unsafe:
                     self.assertTrue(

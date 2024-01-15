@@ -6,7 +6,7 @@ SCANNER=scanner
 HOST_UID=$(stat -c "%u" $PROJECT_PATH)
 HOST_GID=$(stat -c "%g" $PROJECT_PATH)
 groupadd -g $HOST_GID $SCANNER && useradd -u $HOST_UID -g $HOST_GID $SCANNER
-chown -R $SCANNER:$SCANNER $UNISCAN_PATH
+chown -R $SCANNER:$SCANNER $HOOKSCAN_PATH
 
 # set base path
 ARGS=(--base-path $PROJECT_PATH)
@@ -25,4 +25,4 @@ ARGS+=($PROJECT_PATH/$CONTRACT)
 
 echo "arg list: ${ARGS[@]}"
 
-su -c "python -m uniscan `echo ${ARGS[@]}`" $SCANNER
+su -c "python -m hookscan `echo ${ARGS[@]}`" $SCANNER
