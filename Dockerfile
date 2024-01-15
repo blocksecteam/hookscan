@@ -1,9 +1,9 @@
 FROM python:3.8-slim
 
 ENV SOLC_PATH=/solc
-ENV UNISCAN_PATH=/uniscan
+ENV HOOKSCAN_PATH=/hookscan
 
-WORKDIR $UNISCAN_PATH
+WORKDIR $HOOKSCAN_PATH
 
 # install solc>=0.8.14
 RUN apt-get update && apt-get install -y curl jq wget
@@ -22,7 +22,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # move and chmod entrypoint.sh
-RUN mv $UNISCAN_PATH/scripts/entrypoint.sh /entrypoint.sh
+RUN mv $HOOKSCAN_PATH/scripts/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # cleanup
