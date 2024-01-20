@@ -1,5 +1,7 @@
 # HookScan
 
+<img src="./logo.svg" alt="HookScan" width="500"/>
+
 HookScan is an automated static analyzer designed specifically for [Uniswap v4](https://blog.uniswap.org/uniswap-v4) hooks.
 Its purpose is to identify the most prevalent and severe vulnerabilities within Uniswap v4 hooks that are susceptible to malicious manipulation. The security model and design of HookScan draw from insights detailed in a series of our published articles:
 
