@@ -2,6 +2,10 @@
 
 <img src="./logo.svg" alt="HookScan" width="500"/>
 
+[![License: AGPL v3](https://img.shields.io/github/license/blocksecteam/hookscan)](LICENSE)
+[![CI Status](https://github.com/blocksecteam/hookscan/actions/workflows/ci.yml/badge.svg)](https://github.com/blocksecteam/hookscan/actions/workflows/ci.yml)
+[![Build-Image Status](https://github.com/blocksecteam/hookscan/actions/workflows/build-image.yml/badge.svg)](https://github.com/blocksecteam/hookscan/actions/workflows/build-image.yml)
+
 HookScan is an automated static analyzer designed specifically for [Uniswap v4](https://blog.uniswap.org/uniswap-v4) hooks.
 Its purpose is to identify the most prevalent and severe vulnerabilities within Uniswap v4 hooks that are susceptible to malicious manipulation. The security model and design of HookScan draw from insights detailed in a series of our published articles:
 
