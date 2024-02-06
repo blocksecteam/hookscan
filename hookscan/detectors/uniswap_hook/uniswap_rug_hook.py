@@ -32,7 +32,7 @@ class UniswapRugHook(BaseDetector):
                 return  # rug function should be privileged
             for transfer_inst in self.get_all_hooked_instances(info):
                 if isinstance(transfer_inst_value := transfer_inst.value, (Call, Callcode)):
-                    if self.get_call_signature(transfer_inst) in {  # token transfer
+                    if self.get_call_signature(transfer_inst) in {  # token transfer, amount == 0 not considered
                         0xA9059CBB,  # erc20 transfer(address,uint256)
                         0x23B872DD,  # erc20 transferFrom(address,address,uint256)
                         0x42842E0E,  # erc721 safeTransferFrom(address,address,uint256)
@@ -41,7 +41,8 @@ class UniswapRugHook(BaseDetector):
                         0x2EB2C2D6,  # erc1155 safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)
                         0xF242432A,  # erc1155 safeTransferFrom(address,address,uint256,uint256,bytes)
                     } or not (  # native call: value == 0
-                        isinstance(call_value := transfer_inst_value.operands[2], ConstantInt) and call_value.value == 0
+                        isinstance(call_value := transfer_inst.operands[2].origin.value, ConstantInt)
+                        and call_value.value == 0
                     ):
                         self._result[transfer_inst_value] = DetectorResult(
                             target=inst_instance, severity="medium", confidence="medium"
