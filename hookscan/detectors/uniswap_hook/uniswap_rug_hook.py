@@ -40,12 +40,12 @@ class UniswapRugHook(BaseDetector):
                         0x23B872DD,  # erc721 transferFrom(address,address,uint256)
                         0x2EB2C2D6,  # erc1155 safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)
                         0xF242432A,  # erc1155 safeTransferFrom(address,address,uint256,uint256,bytes)
-                    } or not (  # native call: value == 0
-                        isinstance(call_value := transfer_inst.operands[2].origin.value, ConstantInt)
+                    } or not (  # native call: msg.value != 0
+                        isinstance(call_value := transfer_inst.operand_instances[2].origin.value, ConstantInt)
                         and call_value.value == 0
                     ):
                         self._result[transfer_inst_value] = DetectorResult(
-                            target=inst_instance, severity="medium", confidence="medium"
+                            target=transfer_inst, severity="high", confidence="medium"
                         )
 
     def get_internal_result(self) -> List[DetectorResult]:
