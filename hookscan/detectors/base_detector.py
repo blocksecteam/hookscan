@@ -194,3 +194,27 @@ class BaseDetector:
             elif taint == target_taint:
                 return True
         return False
+
+    def get_all_hooked_instances(
+        self, info: "TraversalInfo", target_inst_types: Optional[List[Type[Instruction]]] = None
+    ) -> List[ValueInstance]:
+        def valid_target(target_inst_types: List[Type[Instruction]]):
+            for key1 in target_inst_types:
+                for key2 in target_inst_types:
+                    if key1 == key2:
+                        continue
+                    assert not (issubclass(key1, key2) or issubclass(key2, key1))
+
+        hooked_instances = []
+        inst_types = target_inst_types if target_inst_types is not None else list(self.callback_keys)
+
+        valid_target(inst_types)
+
+        for path_index, inst_index in info.trigger_index_list:
+            path_node = info.path[path_index]
+            inst_index -= path_node.start_index
+            inst_instance = path_node.inst_instances[inst_index]
+            for consider_inst_type in inst_types:
+                if isinstance(inst_instance.value, consider_inst_type):
+                    hooked_instances.append(inst_instance)
+        return hooked_instances

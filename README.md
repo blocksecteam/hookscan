@@ -82,6 +82,7 @@ docker run --rm -it \
 | [`UniswapPublicCallback`][public_callback] | callers of callback functions are not exclusively<br />restricted to the contract itself | High         | High           |
 | [`UniswapUpgradableHook`][upgradable_hook] | the contract `DELEGATECALL`s to mutable addresses                                        | High         | High           |
 | [`UniswapSuicidalHook`][suicidal_hook]     | the contract contains `SELFDESTRUCT`                                                     | Medium       | High           |
+| [`UniswapRugHook`][rug_hook]               | the hook is a possible rug pull contract                                                 | High         | Medium         |
 
 ## Evaluation
 
@@ -94,6 +95,7 @@ The test results are as follows:
 | [`UniswapPublicCallback`][public_callback] | 3/3 contracts       |
 | [`UniswapUpgradableHook`][upgradable_hook] | 0                   |
 | [`UniswapSuicidalHook`][suicidal_hook]     | 0                   |
+| [`UniswapRugHook`][rug_hook]               | N/A                 |
 
 ## Note
 
@@ -111,3 +113,4 @@ This project is under the AGPLv3 License. See the LICENSE file for the full lice
 [public_hook]: docs/detectors/UniswapPublicHook.md
 [upgradable_hook]: docs/detectors/UniswapUpgradableHook.md
 [suicidal_hook]: docs/detectors/UniswapSuicidalHook.md
+[rug_hook]: docs/detectors/UniswapRugHook.md
